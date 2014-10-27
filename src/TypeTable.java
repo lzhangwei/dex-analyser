@@ -36,4 +36,8 @@ public class TypeTable {
     public void addTypeStringRef(int ref) {
         typeStringRef.add(ref);
     }
+
+    public int getTypeStringRef(int i) {
+        return typeStringRef.get(i);
+    }
 }
