@@ -32,4 +32,8 @@ public class TypeTable {
     public void addTypeList(String type) {
         typeList.add(type);
     }
+
+    public void addTypeStringRef(int ref) {
+        typeStringRef.add(ref);
+    }
 }
