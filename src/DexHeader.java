@@ -4,7 +4,7 @@ import java.io.InputStream;
 public class DexHeader {
     private RefAndSize stringTable;
     private RefAndSize typeTable;
-    private RefAndSize protoTable;
+    private RefAndSize prototypeTable;
     private RefAndSize fieldTable;
     private RefAndSize methodTable;
     private RefAndSize classTable;
@@ -25,12 +25,12 @@ public class DexHeader {
         this.typeTable = typeTable;
     }
 
-    public RefAndSize getProtoTable() {
-        return protoTable;
+    public RefAndSize getPrototypeTable() {
+        return prototypeTable;
     }
 
-    public void setProtoTable(RefAndSize protoTable) {
-        this.protoTable = protoTable;
+    public void setPrototypeTable(RefAndSize prototypeTable) {
+        this.prototypeTable = prototypeTable;
     }
 
     public RefAndSize getFieldTable() {
@@ -66,7 +66,7 @@ public class DexHeader {
             //type
             typeTable = createRefAndSize(inputStream,buffer4);
             //prototype
-            protoTable = createRefAndSize(inputStream,buffer4);
+            prototypeTable = createRefAndSize(inputStream,buffer4);
             //field
             fieldTable = createRefAndSize(inputStream,buffer4);
             //method
