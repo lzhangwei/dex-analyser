@@ -50,5 +50,23 @@ public class Prototype {
         this.parameterTypes = parameterTypes;
     }
 
-    
+    public void createPrototype(PrototypeRef prototypeRef, StringTable stringTable, TypeTable typeTable, InputStream inputStream) {
+        funDeclareString = stringTable.getStringList().get(prototypeRef.getFunDeclareStringRef());
+        returnType = typeTable.getTypeList().get(prototypeRef.getReturnTypeRef());
+
+        byte[] buffer4 = new byte[4];
+        byte[] buffer2 = new byte[2];
+        try {
+            inputStream.skip(prototypeRef.getParameterTypeOff());
+            inputStream.read(buffer4);
+            parameterSize = Util.bytesToInt(buffer4);
+            for(int i = 0;i<parameterSize;i++) {
+                inputStream.read(buffer2);
+                int typeIndex = Util.bytesToInt(buffer2);
+                parameterTypes.add(typeTable.getTypeList().get(typeIndex));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
