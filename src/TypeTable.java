@@ -28,4 +28,8 @@ public class TypeTable {
         this.typeList = typeList;
         this.typeStringRef = typeStringRef;
     }
+
+    public void addTypeList(String type) {
+        typeList.add(type);
+    }
 }
