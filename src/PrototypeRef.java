@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,7 +8,6 @@ public class PrototypeRef {
     private int returnTypeRef;
     private int parameterTypeOff;
     private int parameterSize;
-    private List<Integer> parameterTypesRef = new ArrayList<Integer>();
 
     public int getFunDeclareStringRef() {
         return funDeclareStringRef;
@@ -40,14 +41,7 @@ public class PrototypeRef {
         this.parameterSize = parameterSize;
     }
 
-    public List<Integer> getParameterTypesRef() {
-        return parameterTypesRef;
-    }
-
-    public void setParameterTypesRef(List<Integer> parameterTypesRef) {
-        this.parameterTypesRef = parameterTypesRef;
-    }
-
     public PrototypeRef() {
     }
+
 }
