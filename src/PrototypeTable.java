@@ -1,3 +1,4 @@
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,5 +28,13 @@ public class PrototypeTable {
     public PrototypeTable(List<PrototypeRef> prototypeRefList, List<Prototype> prototypeList) {
         this.prototypeRefList = prototypeRefList;
         this.prototypeList = prototypeList;
+    }
+
+    public void createPrototypeRefList(InputStream inputStream, int size) {
+        for(int i =0;i<size;i++) {
+            PrototypeRef prototypeRef = new PrototypeRef();
+            prototypeRef.createPrototypeRef(inputStream);
+            prototypeRefList.add(prototypeRef);
+        }
     }
 }
