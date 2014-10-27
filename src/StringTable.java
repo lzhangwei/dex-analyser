@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,18 @@ public class StringTable {
 
     public int getStringRef(int i) {
         return stringListRef.get(i);
+    }
+
+    public void createStringListRef(InputStream inputStream, int size) {
+        byte buffer4[] = new byte[4];
+        try {
+            for (int i = 0; i < size; i++) {
+                inputStream.read(buffer4);
+                stringListRef.add(Util.bytesToInt(buffer4));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
