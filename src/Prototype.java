@@ -69,4 +69,14 @@ public class Prototype {
             e.printStackTrace();
         }
     }
+
+    public String toString() {
+        String result = "方法声明字符串：" + funDeclareString + "\n";
+        result += "方法返回类型：" + returnType + "\n";
+        result += "方法参数个数：" + parameterSize + "\n";
+        for(int i=0;i<parameterSize;i++) {
+            result += "参数" + i + ":" + parameterTypes.get(i) + "  ";
+        }
+        return result;
+    }
 }
