@@ -1,12 +1,12 @@
 public class RefAndSize {
-    private long off;
+    private int off;
     private int size;
 
-    public long getOff() {
+    public int getOff() {
         return off;
     }
 
-    public void setOff(long off) {
+    public void setOff(int off) {
         this.off = off;
     }
 
@@ -21,7 +21,7 @@ public class RefAndSize {
     public RefAndSize() {
     }
 
-    public RefAndSize(long off, int size) {
+    public RefAndSize(int off, int size) {
         this.off = off;
         this.size = size;
     }
