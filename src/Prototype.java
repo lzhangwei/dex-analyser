@@ -1,9 +1,12 @@
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Prototype {
     private String funDeclareString;
     private String returnType;
+    private int parameterSize;
     private List<String> parameterTypes = new ArrayList<String>();
 
     public String getFunDeclareString() {
@@ -16,6 +19,14 @@ public class Prototype {
 
     public String getReturnType() {
         return returnType;
+    }
+
+    public int getParameterSize() {
+        return parameterSize;
+    }
+
+    public void setParameterSize(int parameterSize) {
+        this.parameterSize = parameterSize;
     }
 
     public void setReturnType(String returnType) {
@@ -38,4 +49,6 @@ public class Prototype {
         this.returnType = returnType;
         this.parameterTypes = parameterTypes;
     }
+
+    
 }
