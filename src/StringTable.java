@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringTable {
-    private List<Long> stringListRef = new ArrayList<Long>();
+    private List<Integer> stringListRef = new ArrayList<Integer>();
     private List<String> stringList = new ArrayList<String>();
 
     public List<String> getStringList() {
@@ -13,11 +13,11 @@ public class StringTable {
         this.stringList = stringList;
     }
 
-    public List<Long> getStringListRef() {
+    public List<Integer> getStringListRef() {
         return stringListRef;
     }
 
-    public void setStringListRef(List<Long> stringListRef) {
+    public void setStringListRef(List<Integer> stringListRef) {
         this.stringListRef = stringListRef;
     }
 
@@ -25,8 +25,12 @@ public class StringTable {
         stringList.add(str);
     }
 
-    public void addStringListRef(Long ref) {
+    public void addStringListRef(int ref) {
         stringListRef.add(ref);
+    }
+
+    public int getStringRef(int i) {
+        return stringListRef.get(i);
     }
 
 }
