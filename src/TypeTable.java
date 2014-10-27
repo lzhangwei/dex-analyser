@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +41,17 @@ public class TypeTable {
 
     public int getTypeStringRef(int i) {
         return typeStringRef.get(i);
+    }
+
+    public void createTypeStringRef(InputStream inputStream, int size) {
+        byte buffer4[] = new byte[4];
+        try {
+            for (int i = 0; i < size; i++) {
+                inputStream.read(buffer4);
+                typeStringRef.add(Util.bytesToInt(buffer4));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
