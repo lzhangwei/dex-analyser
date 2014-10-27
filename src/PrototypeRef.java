@@ -7,7 +7,6 @@ public class PrototypeRef {
     private int funDeclareStringRef;
     private int returnTypeRef;
     private int parameterTypeOff;
-    private int parameterSize;
 
     public int getFunDeclareStringRef() {
         return funDeclareStringRef;
@@ -31,14 +30,6 @@ public class PrototypeRef {
 
     public void setParameterTypeOff(int parameterTypeOff) {
         this.parameterTypeOff = parameterTypeOff;
-    }
-
-    public int getParameterSize() {
-        return parameterSize;
-    }
-
-    public void setParameterSize(int parameterSize) {
-        this.parameterSize = parameterSize;
     }
 
     public PrototypeRef() {
