@@ -37,4 +37,12 @@ public class PrototypeTable {
             prototypeRefList.add(prototypeRef);
         }
     }
+
+    public void createPrototypeList(StringTable stringTable, TypeTable typeTable, InputStream inputStream, int size) {
+        for(int i = 0;i<size;i++) {
+            Prototype prototype = new Prototype();
+            prototype.createPrototype(prototypeRefList.get(i), stringTable, typeTable, inputStream);
+            prototypeList.add(prototype);
+        }
+    }
 }
