@@ -39,11 +39,11 @@ public class PrototypeRef {
         byte[] buffer4 = new byte[4];
         try {
             inputStream.read(buffer4);
-            funDeclareStringRef = Util.bytesToInt(buffer4);
+            funDeclareStringRef = Util.byte4ToInt(buffer4);
             inputStream.read(buffer4);
-            returnTypeRef = Util.bytesToInt(buffer4);
+            returnTypeRef = Util.byte4ToInt(buffer4);
             inputStream.read(buffer4);
-            parameterTypeOff = Util.bytesToInt(buffer4);
+            parameterTypeOff = Util.byte4ToInt(buffer4);
         } catch (IOException e) {
             e.printStackTrace();
         }

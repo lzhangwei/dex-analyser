@@ -57,25 +57,27 @@ public class Prototype {
         byte[] buffer4 = new byte[4];
         byte[] buffer2 = new byte[2];
         try {
-            inputStream.skip(prototypeRef.getParameterTypeOff());
-            inputStream.read(buffer4);
-            parameterSize = Util.bytesToInt(buffer4);
-            for(int i = 0;i<parameterSize;i++) {
-                inputStream.read(buffer2);
-                int typeIndex = Util.bytesToInt(buffer2);
-                parameterTypes.add(typeTable.getTypeList().get(typeIndex));
+            if (prototypeRef.getParameterTypeOff() != 0) {
+                inputStream.read(buffer4);
+                parameterSize = Util.byte4ToInt(buffer4);
+                for (int i = 0; i < parameterSize; i++) {
+                    inputStream.read(buffer2);
+                    int typeIndex = Util.byte2ToInt(buffer2);
+                    parameterTypes.add(typeTable.getTypeList().get(typeIndex));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public String toString() {
-        String result = "方法声明字符串：" + funDeclareString + "\n";
-        result += "方法返回类型：" + returnType + "\n";
-        result += "方法参数个数：" + parameterSize + "\n";
-        for(int i=0;i<parameterSize;i++) {
-            result += "参数" + i + ":" + parameterTypes.get(i) + "  ";
+        String result = "方法声明字符串：" + funDeclareString + ";";
+        result += "方法返回类型：" + returnType + ";";
+        result += "方法参数个数：" + parameterSize + ";";
+        for (int i = 0; i < parameterSize; i++) {
+            result += "参数" + (i + 1) + ":" + parameterTypes.get(i) + "  ";
         }
         return result;
     }
