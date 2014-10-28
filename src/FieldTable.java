@@ -38,4 +38,10 @@ public class FieldTable {
             fieldRefList.add(fieldRef);
         }
     }
+
+    public void addFieldList(StringTable stringTable, TypeTable typeTable,FieldRef fieldRef) {
+        Field field = new Field();
+        field.createField(fieldRef, typeTable, stringTable);
+        fieldList.add(field);
+    }
 }
