@@ -21,26 +21,38 @@ public class Main {
             TypeTable typeTable = new TypeTable();
             typeTable.createTypeStringRef(inputStream, dexHeader.getTypeTable().getSize());
 
+            PrototypeTable prototypeTable = new PrototypeTable();
+            prototypeTable.createPrototypeRefList(inputStream, dexHeader.getPrototypeTable().getSize());
+
             System.out.println("Dex文件中字符串个数为：" + dexHeader.getStringTable().getSize());
             System.out.println("字符串依次是：");
             for (int i = 0; i < dexHeader.getStringTable().getSize(); i++) {
                 inputStream = new FileInputStream("resources/test.dex");
                 inputStream.skip(stringTable.getStringRef(i));
                 inputStream.read(buffer1);
-                int size= buffer1[0];
+                int size = buffer1[0];
 
                 byte buffer[] = new byte[size];
                 inputStream.read(buffer, 0, size);
                 stringTable.addStringList(new String(buffer));
-                System.out.println("     字符串"+(i+1)+":" + new String(buffer));
+                System.out.println("     字符串" + (i + 1) + ":" + new String(buffer));
             }
 
             System.out.println("Dex文件中类型个数为：" + dexHeader.getTypeTable().getSize());
             System.out.println("类型依次是：");
             for (int i = 0; i < dexHeader.getTypeTable().getSize(); i++) {
                 int ref = typeTable.getTypeStringRef(i);
-                typeTable.addTypeList(stringTable.getStringList().get(ref-1));
-                System.out.println("     类型"+(i+1)+":" + stringTable.getStringList().get(ref-1));
+                typeTable.addTypeList(stringTable.getStringList().get(ref));
+                System.out.println("     类型" + (i + 1) + ":" + stringTable.getStringList().get(ref));
+            }
+
+            System.out.println("Dex文件中原型个数为：" + dexHeader.getPrototypeTable().getSize());
+            System.out.println("原型依次是：");
+            int prototypeSize = dexHeader.getPrototypeTable().getSize();
+            for (int i = 0; i < prototypeSize; i++) {
+                inputStream = new FileInputStream("resources/test.dex");
+                prototypeTable.addPrototype(stringTable, typeTable, inputStream, prototypeTable.getPrototypeRefList().get(i));
+                System.out.println("原型" + i + ":" + prototypeTable.getPrototypeList().get(i).toString() + "\n");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
