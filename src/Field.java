@@ -43,4 +43,12 @@ public class Field {
         fieldType = typeTable.getTypeList().get(fieldRef.getFieldTypeRef());
         fieldName = stringTable.getStringList().get(fieldRef.getFieldNameRef());
     }
+
+    public String toString() {
+        String result = null;
+        result += "类类型：" + classType + ";";
+        result += "字段类型：" + fieldType + ";";
+        result += "字段名：" + fieldName + "\n";
+        return result;
+    }
 }
