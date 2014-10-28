@@ -4,30 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FieldTable {
-    private List<Integer> fieldRefList = new ArrayList<Integer>();
-    private List<String> fieldList = new ArrayList<String>();
+    private List<FieldRef> fieldRefList = new ArrayList<FieldRef>();
+    private List<Field> fieldList = new ArrayList<Field>();
 
     public FieldTable() {
     }
 
-    public FieldTable(List<Integer> fieldRefList, List<String> fieldList) {
+    public FieldTable(List<FieldRef> fieldRefList, List<Field> fieldList) {
         this.fieldRefList = fieldRefList;
         this.fieldList = fieldList;
     }
 
-    public List<Integer> getFieldRefList() {
+    public List<FieldRef> getFieldRefList() {
         return fieldRefList;
     }
 
-    public void setFieldRefList(List<Integer> fieldRefList) {
+    public void setFieldRefList(List<FieldRef> fieldRefList) {
         this.fieldRefList = fieldRefList;
     }
 
-    public List<String> getFieldList() {
+    public List<Field> getFieldList() {
         return fieldList;
     }
 
-    public void setFieldList(List<String> fieldList) {
+    public void setFieldList(List<Field> fieldList) {
         this.fieldList = fieldList;
+    }
+
+    public void createFieldRefList(InputStream inputStream, int size) {
+        for (int i = 0; i < size; i++) {
+            FieldRef fieldRef = new FieldRef();
+            fieldRef.createFieldRef(inputStream);
+            fieldRefList.add(fieldRef);
+        }
     }
 }
