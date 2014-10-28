@@ -4,23 +4,15 @@ import java.io.IOException;
 
 public class Util {
 
-    public static int bytesToInt(byte[] bytes) {
-        int result = 0;
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-        DataInputStream dataInputStream = new DataInputStream(byteArrayInputStream);
-        try {
-            result = Integer.reverseBytes(dataInputStream.readInt());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                byteArrayInputStream.close();
-                dataInputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public static int byte4ToInt(byte[] ary) {
+        return ary[0] & 0xFF |
+                (ary[1] & 0xFF) << 8 |
+                (ary[2] & 0xFF) << 16 |
+                (ary[3] & 0xFF) << 24;
+    }
 
-        }
-        return result;
+    public static int byte2ToInt(byte[] ary) {
+        return ary[0] & 0xFF |
+                (ary[1] & 0xFF) << 8;
     }
 }
