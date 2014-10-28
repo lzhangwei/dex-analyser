@@ -58,35 +58,33 @@ public class DexHeader {
     }
 
     public void readHeader(InputStream inputStream) {
-        byte buffer4[] = new byte[4];
         try {
             inputStream.skip(56);
             //string
-            stringTable = createRefAndSize(inputStream,buffer4);
+            stringTable = createRefAndSize(inputStream);
             //type
-            typeTable = createRefAndSize(inputStream,buffer4);
+            typeTable = createRefAndSize(inputStream);
             //prototype
-            prototypeTable = createRefAndSize(inputStream,buffer4);
+            prototypeTable = createRefAndSize(inputStream);
             //field
-            fieldTable = createRefAndSize(inputStream,buffer4);
+            fieldTable = createRefAndSize(inputStream);
             //method
-            methodTable = createRefAndSize(inputStream,buffer4);
+            methodTable = createRefAndSize(inputStream);
             //class
-            classTable = createRefAndSize(inputStream,buffer4);
+            classTable = createRefAndSize(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private RefAndSize createRefAndSize(InputStream inputStream, byte buffer4[]) {
-        RefAndSize result = new RefAndSize();
+    private RefAndSize createRefAndSize(InputStream inputStream) {
+        RefAndSize result = null;
+        byte buffer4[] = new byte[4];
         try {
-            inputStream.read(buffer4, 0, 4);
-            byte sizes[] = buffer4;
-            int size = Util.bytesToInt(sizes);
-            inputStream.read(buffer4, 0, 4);
-            byte offs[] = buffer4;
-            int off = Util.bytesToInt(offs);
+            inputStream.read(buffer4);
+            int size = Util.byte4ToInt(buffer4);
+            inputStream.read(buffer4);
+            int off = Util.byte4ToInt(buffer4);
             result = new RefAndSize(off,size);
         } catch (IOException e) {
             e.printStackTrace();
