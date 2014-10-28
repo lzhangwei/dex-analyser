@@ -24,6 +24,9 @@ public class Main {
             PrototypeTable prototypeTable = new PrototypeTable();
             prototypeTable.createPrototypeRefList(inputStream, dexHeader.getPrototypeTable().getSize());
 
+            FieldTable fieldTable = new FieldTable();
+            fieldTable.createFieldRefList(inputStream, dexHeader.getFieldTable().getSize());
+
             System.out.println("Dex文件中字符串个数为：" + dexHeader.getStringTable().getSize());
             System.out.println("字符串依次是：");
             for (int i = 0; i < dexHeader.getStringTable().getSize(); i++) {
@@ -52,7 +55,15 @@ public class Main {
             for (int i = 0; i < prototypeSize; i++) {
                 inputStream = new FileInputStream("resources/test.dex");
                 prototypeTable.addPrototype(stringTable, typeTable, inputStream, prototypeTable.getPrototypeRefList().get(i));
-                System.out.println("原型" + i + ":" + prototypeTable.getPrototypeList().get(i).toString() + "\n");
+                System.out.println("原型" + (i + 1) + ":" + prototypeTable.getPrototypeList().get(i).toString() + "\n");
+            }
+
+            System.out.println("Dex文件中字段个数为：" + dexHeader.getFieldTable().getSize());
+            System.out.println("字段依次是：");
+            int fieldSize = dexHeader.getFieldTable().getSize();
+            for (int i = 0; i < fieldSize; i++) {
+                fieldTable.addFieldList(stringTable, typeTable, fieldTable.getFieldRefList().get(i));
+                System.out.println("字段" + (i + 1) + ":" + fieldTable.getFieldList().get(i).toString() + "\n");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
