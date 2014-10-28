@@ -45,7 +45,7 @@ public class Field {
     }
 
     public String toString() {
-        String result = null;
+        String result = "";
         result += "类类型：" + classType + ";";
         result += "字段类型：" + fieldType + ";";
         result += "字段名：" + fieldName + "\n";
