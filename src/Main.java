@@ -27,6 +27,9 @@ public class Main {
             FieldTable fieldTable = new FieldTable();
             fieldTable.createFieldRefList(inputStream, dexHeader.getFieldTable().getSize());
 
+            MethodTable methodTable = new MethodTable();
+            methodTable.createMethodRefList(inputStream, dexHeader.getMethodTable().getSize());
+
             System.out.println("Dex文件中字符串个数为：" + dexHeader.getStringTable().getSize());
             System.out.println("字符串依次是：");
             for (int i = 0; i < dexHeader.getStringTable().getSize(); i++) {
@@ -64,6 +67,14 @@ public class Main {
             for (int i = 0; i < fieldSize; i++) {
                 fieldTable.addFieldList(stringTable, typeTable, fieldTable.getFieldRefList().get(i));
                 System.out.println("字段" + (i + 1) + ":" + fieldTable.getFieldList().get(i).toString() + "\n");
+            }
+
+            System.out.println("Dex文件中方法个数为：" + dexHeader.getMethodTable().getSize());
+            System.out.println("方法依次是：");
+            int methodSize = dexHeader.getMethodTable().getSize();
+            for (int i = 0; i < methodSize; i++) {
+                methodTable.addMethodList(stringTable, typeTable, prototypeTable, methodTable.getMethodRefList().get(i));
+                System.out.println("方法" + (i + 1) + ":" + methodTable.getMethodList().get(i).toString() + "\n");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
