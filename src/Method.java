@@ -17,4 +17,18 @@ public class Method {
 
     public Method() {
     }
+
+    public void createMethod(MethodRef methodRef, TypeTable typeTable, PrototypeTable prototypeTable, StringTable stringTable) {
+        classType = typeTable.getTypeList().get(methodRef.getClassTypeRef());
+        prototype = prototypeTable.getPrototypeList().get(methodRef.getPrototypeRef());
+        methodName = stringTable.getStringList().get(methodRef.getMethodNameRef());
+    }
+
+    public String toString(Prototype prototype) {
+        String result = "";
+        result += "类类型：" + classType + ";";
+        result += "原型：" + prototype.toString() + ";";
+        result += "方法名：" + methodName + "  ";
+        return result;
+    }
 }
