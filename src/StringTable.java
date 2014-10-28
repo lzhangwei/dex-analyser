@@ -40,7 +40,7 @@ public class StringTable {
         try {
             for (int i = 0; i < size; i++) {
                 inputStream.read(buffer4);
-                stringListRef.add(Util.bytesToInt(buffer4));
+                stringListRef.add(Util.byte4ToInt(buffer4));
             }
         } catch (IOException e) {
             e.printStackTrace();
