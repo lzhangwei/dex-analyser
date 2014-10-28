@@ -24,7 +24,7 @@ public class Method {
         methodName = stringTable.getStringList().get(methodRef.getMethodNameRef());
     }
 
-    public String toString(Prototype prototype) {
+    public String toString() {
         String result = "";
         result += "类类型：" + classType + ";";
         result += "原型：" + prototype.toString() + ";";
