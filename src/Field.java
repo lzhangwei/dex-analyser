@@ -1,3 +1,5 @@
+import java.io.InputStream;
+
 public class Field {
     private String classType;
     private String fieldType;
@@ -34,5 +36,11 @@ public class Field {
 
     public void setFieldName(String fieldName) {
         this.fieldName = fieldName;
+    }
+
+    public void createField(FieldRef fieldRef, TypeTable typeTable, StringTable stringTable) {
+        classType = typeTable.getTypeList().get(fieldRef.getClassTypeRef());
+        fieldType = typeTable.getTypeList().get(fieldRef.getFieldTypeRef());
+        fieldName = stringTable.getStringList().get(fieldRef.getFieldNameRef());
     }
 }
