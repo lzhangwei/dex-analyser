@@ -11,7 +11,7 @@ public class Class {
     private List<String> interfaceList = new ArrayList<String>();
     private String sourceFileName;
     //注解未实现
-    private ClassData classData;
+    private ClassData classData = new ClassData();
     //staticValues
 
 
@@ -64,5 +64,9 @@ public class Class {
             e.printStackTrace();
         }
         sourceFileName = stringTable.getStringList().get(classRef.getSourceFileNameRef());
+    }
+
+    public void createClassData(InputStream inputStream) {
+        classData.createClassData(inputStream);
     }
 }
