@@ -86,7 +86,6 @@ public class Main {
             for (int i = 0; i < classSize; i++) {
                 inputStream = new FileInputStream("resources/test.dex");
                 classTable.addClass(stringTable, typeTable, inputStream, classTable.getClassRefList().get(i));
-                System.out.println("test1");
                 inputStream = new FileInputStream("resources/test.dex");
                 inputStream.skip(classTable.getClassRefList().get(i).getClassDataOff());
                 classTable.getClassList().get(i).createClassData(inputStream);

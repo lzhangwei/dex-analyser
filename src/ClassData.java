@@ -58,7 +58,6 @@ public class ClassData {
             directMethodSize = Util.byteToInt(buffer1);
             inputStream.read(buffer1);
             virtualMethodSize = Util.byteToInt(buffer1);
-            System.out.println("test" + staticFieldSize + "," + instanceFieldSize + "," + directMethodSize + "," + virtualMethodSize);
             for (int i = 0; i < staticFieldSize; i++) {
                 DexField dexField = new DexField();
                 dexField.createDexField(inputStream);
