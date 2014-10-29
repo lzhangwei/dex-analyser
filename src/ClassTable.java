@@ -1,3 +1,4 @@
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,5 +12,13 @@ public class ClassTable {
 
     public List<Class> getClassList() {
         return classList;
+    }
+
+    public void createClassRefList(InputStream inputStream, int size) {
+        for (int i = 0; i < size; i++) {
+            ClassRef classRef = new ClassRef();
+            classRef.createClassRef(inputStream);
+            classRefList.add(classRef);
+        }
     }
 }
