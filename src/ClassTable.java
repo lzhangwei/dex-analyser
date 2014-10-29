@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,12 @@ public class ClassTable {
 
     public void addClass(StringTable stringTable, TypeTable typeTable, InputStream inputStream, ClassRef classRef) {
         Class classInfo = new Class();
-        classInfo.createClass(classRef, stringTable, typeTable, inputStream);
-        classList.add(classInfo);
+        try {
+            inputStream.skip(classRef.getInterfacesOff());
+            classInfo.createClass(classRef, stringTable, typeTable, inputStream);
+            classList.add(classInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
