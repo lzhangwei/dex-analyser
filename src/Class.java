@@ -69,4 +69,18 @@ public class Class {
     public void createClassData(InputStream inputStream) {
         classData.createClassData(inputStream);
     }
+
+    public String toString() {
+        String result = "";
+        result += "类类型：" + classType +";";
+        result += "访问标志：" + accessFlag +";";
+        result += "父类类型：" + superClassType + ";";
+        result += "接口个数：" + interfaceSize + ";";
+        for(int i =0;i<interfaceSize;i++) {
+            result += "接口" + (i+1) + ":" +interfaceList.get(i);
+        }
+        result += "源文件名：" + sourceFileName + ";";
+        result += "类数据：" + classData.toString();
+        return result;
+    }
 }
