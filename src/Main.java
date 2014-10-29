@@ -30,6 +30,9 @@ public class Main {
             MethodTable methodTable = new MethodTable();
             methodTable.createMethodRefList(inputStream, dexHeader.getMethodTable().getSize());
 
+            ClassTable classTable = new ClassTable();
+            classTable.createClassRefList(inputStream, dexHeader.getClassTable().getSize());
+
             System.out.println("Dex文件中字符串个数为：" + dexHeader.getStringTable().getSize());
             System.out.println("字符串依次是：");
             for (int i = 0; i < dexHeader.getStringTable().getSize(); i++) {
@@ -75,6 +78,19 @@ public class Main {
             for (int i = 0; i < methodSize; i++) {
                 methodTable.addMethodList(stringTable, typeTable, prototypeTable, methodTable.getMethodRefList().get(i));
                 System.out.println("方法" + (i + 1) + ":" + methodTable.getMethodList().get(i).toString() + "\n");
+            }
+
+            System.out.println("Dex文件中类个数为：" + dexHeader.getClassTable().getSize());
+            System.out.println("类依次是：");
+            int classSize = dexHeader.getClassTable().getSize();
+            for (int i = 0; i < classSize; i++) {
+                inputStream = new FileInputStream("resources/test.dex");
+                classTable.addClass(stringTable, typeTable, inputStream, classTable.getClassRefList().get(i));
+                System.out.println("test1");
+                inputStream = new FileInputStream("resources/test.dex");
+                inputStream.skip(classTable.getClassRefList().get(i).getClassDataOff());
+                classTable.getClassList().get(i).createClassData(inputStream);
+                System.out.println("类" + (i + 1) + ":" + classTable.getClassList().get(i).toString() + "\n");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

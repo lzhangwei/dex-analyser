@@ -15,4 +15,8 @@ public class Util {
         return ary[0] & 0xFF |
                 (ary[1] & 0xFF) << 8;
     }
+
+    public static int byteToInt(byte[] ary) {
+        return ary[0] & 0xFF;
+    }
 }

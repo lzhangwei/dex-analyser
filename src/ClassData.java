@@ -11,7 +11,7 @@ public class ClassData {
     private List<DexField> staticFieldList = new ArrayList<DexField>();
     private List<DexField> instanceFieldList = new ArrayList<DexField>();
     private List<DexMethod> directMethodList = new ArrayList<DexMethod>();
-    private List<DexMethod> virtualMethods = new ArrayList<DexMethod>();
+    private List<DexMethod> virtualMethodList = new ArrayList<DexMethod>();
 
     public int getStaticFieldSize() {
         return staticFieldSize;
@@ -41,22 +41,24 @@ public class ClassData {
         return directMethodList;
     }
 
-    public List<DexMethod> getVirtualMethods() {
-        return virtualMethods;
+    public List<DexMethod> getVirtualMethodList() {
+        return virtualMethodList;
     }
 
     public void createClassData(InputStream inputStream) {
         byte buffer2[] = new byte[2];
         byte buffer4[] = new byte[4];
+        byte buffer1[] = new byte[1];
         try {
-            inputStream.read(buffer4);
-            staticFieldSize = Util.byte4ToInt(buffer4);
-            inputStream.read(buffer4);
-            instanceFieldSize = Util.byte4ToInt(buffer4);
-            inputStream.read(buffer4);
-            directMethodSize = Util.byte4ToInt(buffer4);
-            inputStream.read(buffer4);
-            virtualMethodSize = Util.byte4ToInt(buffer4);
+            inputStream.read(buffer1);
+            staticFieldSize = Util.byteToInt(buffer1);
+            inputStream.read(buffer1);
+            instanceFieldSize = Util.byteToInt(buffer1);
+            inputStream.read(buffer1);
+            directMethodSize = Util.byteToInt(buffer1);
+            inputStream.read(buffer1);
+            virtualMethodSize = Util.byteToInt(buffer1);
+            System.out.println("test" + staticFieldSize + "," + instanceFieldSize + "," + directMethodSize + "," + virtualMethodSize);
             for (int i = 0; i < staticFieldSize; i++) {
                 DexField dexField = new DexField();
                 dexField.createDexField(inputStream);
@@ -75,7 +77,7 @@ public class ClassData {
             for (int i = 0; i < virtualMethodSize; i++) {
                 DexMethod dexMethod = new DexMethod();
                 dexMethod.createDexMethod(inputStream);
-                virtualMethods.add(dexMethod);
+                virtualMethodList.add(dexMethod);
             }
 
         } catch (IOException e) {
@@ -93,13 +95,13 @@ public class ClassData {
             result += "静态字段" +  (i+1) + ":" + staticFieldList.get(i).toString();
         }
         for (int i = 0; i < instanceFieldSize; i++) {
-            result += "实例字段" +  (i+1) + ":" + staticFieldList.get(i).toString();
+            result += "实例字段" +  (i+1) + ":" + instanceFieldList.get(i).toString();
         }
         for (int i = 0; i < directMethodSize; i++) {
-            result += "直接方法" +  (i+1) + ":" + staticFieldList.get(i).toString();
+            result += "直接方法" +  (i+1) + ":" + directMethodList.get(i).toString();
         }
         for (int i = 0; i < virtualMethodSize; i++) {
-            result += "虚方法" +  (i+1) + ":" + staticFieldList.get(i).toString();
+            result += "虚方法" +  (i+1) + ":" + virtualMethodList.get(i).toString();
         }
 
         return result;
