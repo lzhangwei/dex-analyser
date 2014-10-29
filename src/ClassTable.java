@@ -21,4 +21,10 @@ public class ClassTable {
             classRefList.add(classRef);
         }
     }
+
+    public void addClass(StringTable stringTable, TypeTable typeTable, InputStream inputStream, ClassRef classRef) {
+        Class classInfo = new Class();
+        classInfo.createClass(classRef, stringTable, typeTable, inputStream);
+        classList.add(classInfo);
+    }
 }
