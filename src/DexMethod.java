@@ -31,4 +31,12 @@ public class DexMethod {
             e.printStackTrace();
         }
     }
+
+    public String toString() {
+        String result = "";
+        result += "Method索引：" + methodRef + ";";
+        result += "访问标志：" + accessFlag + ";";
+        result += "CodeOff:" + codeOff;
+        return result;
+    }
 }

@@ -24,4 +24,11 @@ public class DexField {
             e.printStackTrace();
         }
     }
+
+    public String toString() {
+        String result = "";
+        result += "Field索引：" + fieldRef + ";";
+        result += "访问标志：" + accessFlag;
+        return result;
+    }
 }

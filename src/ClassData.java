@@ -82,4 +82,26 @@ public class ClassData {
             e.printStackTrace();
         }
     }
+
+    public String toString() {
+        String result = "";
+        result += "静态字段个数：" + staticFieldSize + ";";
+        result += "实例字段个数：" + instanceFieldSize + ";";
+        result += "直接方法个数：" + directMethodSize + ";";
+        result += "虚方法个数：" + virtualMethodSize + ";";
+        for (int i = 0; i < staticFieldSize; i++) {
+            result += "静态字段" +  (i+1) + ":" + staticFieldList.get(i).toString();
+        }
+        for (int i = 0; i < instanceFieldSize; i++) {
+            result += "实例字段" +  (i+1) + ":" + staticFieldList.get(i).toString();
+        }
+        for (int i = 0; i < directMethodSize; i++) {
+            result += "直接方法" +  (i+1) + ":" + staticFieldList.get(i).toString();
+        }
+        for (int i = 0; i < virtualMethodSize; i++) {
+            result += "虚方法" +  (i+1) + ":" + staticFieldList.get(i).toString();
+        }
+
+        return result;
+    }
 }
